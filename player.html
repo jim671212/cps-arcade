@@ -6,14 +6,13 @@
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>CPS Arcade v1.2</title>
-<link rel="stylesheet" href="player.css">
+<title>CPS Arcade v1.3</title>
+<link rel="stylesheet" href="player.css?v=1.3">
 </head>
 <body>
-<div id="version">v1.2</div>
+<div id="version">v1.3</div>
 <div id="stage"><div id="game"></div></div>
-<div id="loading"><b id="loadingTitle">遊戲載入中</b><span>請稍候…</span></div>
-
+<div id="loading"><b id="loadingTitle">遊戲載入中</b><span id="loadingNote">CPS1 ROM set 檢查中…</span></div>
 <div id="controls">
   <div id="joyZone"><div id="joyBase" class="hidden"><div id="joyKnob"></div></div></div>
   <div id="actions">
@@ -23,47 +22,47 @@
     <button class="action s" data-input="9">S</button>
     <button class="combo" data-combo="0,8">P+J</button>
   </div>
-  <div id="centerButtons">
-    <button data-input="2">COIN</button>
-    <button data-input="3">START</button>
-  </div>
+  <div id="centerButtons"><button data-input="2">COIN</button><button data-input="3">START</button></div>
 </div>
-
 <button id="menuBtn" aria-label="設定">☰</button>
 <div id="quickMenu" class="hidden">
-  <button id="backBtn">← 遊戲選單</button>
-  <button id="fullBtn">全螢幕</button>
+  <button id="backBtn">← 遊戲選單</button><button id="fullBtn">全螢幕</button>
   <label>控制大小 <input id="controlSize" type="range" min="75" max="125" value="100"></label>
   <button id="resetBtn">恢復預設</button>
 </div>
-
 <script>
 (function(){
-  const q=new URLSearchParams(location.search); const id=q.get('game')||'knights';
+  const q=new URLSearchParams(location.search); const id=(q.get('game')||'knights').toLowerCase();
   const games={
-    tk2j:{name:'三國志2',rom:'roms/tk2j.zip',gameID:101},
-    sf2j:{name:'快打旋風',rom:'roms/sf2j.zip',gameID:102},
-    knights:{name:'圓桌武士',rom:'roms/knights.zip',gameID:103}
+    tk2j:{title:'三國志2',set:'tk2j',rom:'roms/tk2j.zip',gameID:101},
+    sf2j:{title:'快打旋風',set:'sf2j',rom:'roms/sf2j.zip',gameID:102},
+    knights:{title:'圓桌武士',set:'knights',rom:'roms/knights.zip',gameID:103}
   };
-  const g=games[id]||games.knights; document.title=g.name+' · CPS Arcade v1.2';
-  document.getElementById('loadingTitle').textContent=g.name+' 載入中';
+  const g=games[id]||games.knights;
+  document.title=g.title+' · CPS Arcade v1.3';
+  document.getElementById('loadingTitle').textContent=g.title+' 載入中';
+  const romUrl=new URL(g.rom,document.baseURI).href;
+  // IMPORTANT: FB Alpha/FinalBurn arcade drivers identify content by ROM-set basename.
+  // Keep gameName exactly equal to tk2j/sf2j/knights instead of the Chinese display title.
   window.EJS_player='#game';
   window.EJS_core='fbalpha2012_cps1';
-  window.EJS_gameUrl=new URL(g.rom,location.href).href;
-  window.EJS_gameName=g.name;
+  window.EJS_gameUrl=romUrl;
+  window.EJS_gameName=g.set;
   window.EJS_gameID=g.gameID;
-  window.EJS_pathtodata='https://cdn.emulatorjs.org/stable/data/';
+  window.EJS_pathtodata='https://cdn.emulatorjs.org/4.2.3/data/';
   window.EJS_startOnLoaded=true;
   window.EJS_fullscreenOnLoaded=false;
   window.EJS_language='zh-TW';
+  window.EJS_disableAutoLang=true;
   window.EJS_controlScheme='arcade';
-  window.EJS_VirtualGamepadSettings=[];
+  window.EJS_VirtualGamepadSettings={};
+  window.EJS_disableLocalStorage=true;
   window.EJS_Buttons={playPause:false,restart:false,mute:false,settings:false,fullscreen:false,saveState:false,loadState:false,screenRecord:false,gamepad:false,cheat:false,volume:false,saveSavFiles:false,loadSavFiles:false,quickSave:false,quickLoad:false,screenshot:false,cacheManager:false,exitEmulation:false};
-  window.EJS_ready=function(){setTimeout(()=>document.getElementById('loading').classList.add('hidden'),350)};
+  window.EJS_ready=function(){document.getElementById('loadingNote').textContent='核心已就緒，正在啟動 '+g.set+'.zip…'};
   window.EJS_onGameStart=function(){document.getElementById('loading').classList.add('hidden')};
 })();
 </script>
-<script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
-<script src="player.js"></script>
+<script src="https://cdn.emulatorjs.org/4.2.3/data/loader.js"></script>
+<script src="player.js?v=1.3"></script>
 </body>
 </html>
