@@ -8,11 +8,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.svg">
-<title>CPS Arcade v1.2</title>
-<link rel="stylesheet" href="style.css">
+<title>CPS Arcade v1.3</title>
+<link rel="stylesheet" href="style.css?v=1.3">
 </head>
 <body>
-<div id="version">v1.2</div>
+<div id="version">v1.3</div>
 <div id="installBanner" class="install-banner hidden"><span>安裝到桌面，玩起來更像原生遊戲</span><button id="installBtn">安裝</button><button id="installClose" class="ghost">×</button></div>
 <main id="app">
   <section id="library" class="library">
@@ -27,6 +27,6 @@
 </main>
 <div id="multiModal" class="modal hidden"><div class="modal-card"><button id="multiClose" class="modal-x">×</button><h2>多人連線</h2><p>4 碼邀請功能保留，遊戲同步將在後續版本強化。</p><div class="room-code" id="roomCode">----</div><div class="multi-actions"><button id="hostRoom">建立房間</button><div class="join-row"><input id="joinCode" maxlength="4" inputmode="numeric" placeholder="4碼"><button id="joinRoom">加入</button></div></div><div id="netStatus" class="status">尚未連線</div></div></div>
 <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
-<script src="home-v12.js"></script>
+<script src="home-v12.js?v=1.3"></script>
 </body>
 </html>
