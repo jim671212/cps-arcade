@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#08090b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>MEME ARCADE v1.1</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.svg">
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+</head>
+<body>
+<div id="versionBadge">v1.1</div>
+<div id="rotateHint">↻ 請將手機橫向使用</div>
+<section id="launcher" class="screen show">
+  <header class="launcherBar">
+    <div class="brand"><span class="brandMark">M</span><div><strong>MEME ARCADE</strong><small>NES / WEB ARCADE</small></div></div>
+    <div class="launcherActions">
+      <button id="installBtn" class="pill install hidden">＋ 安裝到桌面</button>
+      <button id="openRoomBtn" class="roundBtn" aria-label="多人連線">👥</button>
+      <button id="fullscreenLauncherBtn" class="roundBtn" aria-label="全螢幕">⛶</button>
+    </div>
+  </header>
+  <main class="library"><div class="hero"><h1>選擇遊戲</h1><p>點一下直接開始・手機橫向最佳化</p></div><div id="gameGrid" class="gameGrid"></div></main>
+</section>
+<section id="playScreen" class="screen playScreen">
+  <div id="stageWrap"><div id="game"></div><div id="loading" class="loading"><div class="spinner"></div><b>準備遊戲中</b><span id="loadingText">載入模擬器…</span></div></div>
+  <button id="quickToggle" class="quickToggle" aria-label="功能列表">☰</button>
+  <div id="quickMenu" class="quickMenu">
+    <button data-action="sound"><b id="soundIcon">🔊</b><span>聲音</span></button><button data-action="width"><b>↔</b><span id="widthLabel">100%</span></button><button data-action="voice"><b id="voiceIcon">🎙</b><span id="voiceLabel">語音 ON</span></button><button data-action="controls"><b>🎮</b><span>按鍵</span></button><button data-action="turbo"><b>⚡</b><span id="turboLabel">連發 OFF</span></button><button data-action="fullscreen"><b>⛶</b><span>全螢幕</span></button><button data-action="room"><b>👥</b><span>多人</span></button><button data-action="home"><b>⌂</b><span>遊戲</span></button>
+  </div>
+  <div id="dpadZone" class="dpadZone controlOverlay"><div id="dpad" class="dpad" aria-label="方向鍵"><div class="dpadArm up" data-dir="up">▲</div><div class="dpadArm left" data-dir="left">◀</div><div class="dpadCenter"></div><div class="dpadArm right" data-dir="right">▶</div><div class="dpadArm down" data-dir="down">▼</div></div></div>
+  <div id="actionZone" class="actionZone controlOverlay"><button class="actionBtn btnB" data-key="x" data-button="b">B</button><button class="actionBtn btnA" data-key="z" data-button="a">A</button><button class="miniBtn select" data-key="Shift">SELECT</button><button class="miniBtn start" data-key="Enter">START</button></div>
+</section>
+<div id="roomModal" class="modal"><div class="sheet compactSheet"><div class="sheetHead"><div><b>多人連線</b><small>4 碼邀請</small></div><button class="closeBtn" data-close>×</button></div><div class="roomTabs"><button class="active" data-roomtab="host">建立房間</button><button data-roomtab="join">加入房間</button></div><div id="hostPane" class="roomPane show"><div class="codeBox"><span id="roomCode">----</span><button id="copyCode">複製</button></div><button id="createRoomBtn" class="primary">建立 4 碼房間</button></div><div id="joinPane" class="roomPane"><input id="joinCode" maxlength="4" inputmode="numeric" pattern="[0-9]*" placeholder="輸入 4 碼"><button id="joinRoomBtn" class="primary">立即加入</button></div><div id="roomStatus" class="statusDot">● 尚未連線</div><p class="hint">連線後會同步第二位玩家的操作；語音預設開啟，可從左下功能表關閉。</p></div></div>
+<div id="controlsModal" class="modal"><div class="sheet controlsSheet"><div class="sheetHead"><div><b>按鍵配置</b><small>拖曳滑桿即時預覽</small></div><button class="closeBtn" data-close>×</button></div><div class="settingGroup"><label>左側方向鍵 X <output id="leftXOut">0</output></label><input id="leftX" type="range" min="-25" max="25" value="0"></div><div class="settingGroup"><label>左側方向鍵 Y <output id="leftYOut">0</output></label><input id="leftY" type="range" min="-25" max="25" value="0"></div><div class="settingGroup"><label>右側按鍵 X <output id="rightXOut">0</output></label><input id="rightX" type="range" min="-25" max="25" value="0"></div><div class="settingGroup"><label>右側按鍵 Y <output id="rightYOut">0</output></label><input id="rightY" type="range" min="-25" max="25" value="0"></div><div class="settingGroup"><label>按鍵大小 <output id="scaleOut">100%</output></label><input id="controlScale" type="range" min="70" max="140" value="100"></div><button id="resetControls" class="primary secondary">恢復預設位置</button></div></div>
+<div id="installModal" class="modal"><div class="sheet compactSheet"><div class="sheetHead"><div><b>安裝到桌面</b><small>像 App 一樣快速啟動</small></div><button class="closeBtn" data-close>×</button></div><div id="installInstructions" class="installInstructions"></div></div></div>
+<audio id="remoteAudio" autoplay playsinline></audio><script src="app.js"></script>
+</body></html>
