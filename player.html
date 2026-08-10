@@ -1,15 +1,16 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>圓桌武士 · CPS Arcade v1.5</title><link rel="stylesheet" href="player.css?v=1.5"></head><body>
-<div id="version">v1.5</div><div id="stage"><div id="game"></div></div><div id="loading"><b id="loadingTitle">圓桌武士 載入中</b><span id="loadingNote">knightsj.zip · FB Alpha 2012 CPS-1</span></div>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>圓桌武士 · CPS Arcade v1.6</title><link rel="stylesheet" href="player.css?v=1.6"></head><body>
+<div id="version">v1.6</div><div id="stage"><div id="game"></div></div><div id="loading"><b id="loadingTitle">圓桌武士 載入中</b><span id="loadingNote">knightsj.zip + parent knights.zip</span></div>
 <div id="controls"><div id="joyZone"><div id="joyBase" class="hidden"><div id="joyKnob"></div></div></div><div id="actions"><button class="action p" data-input="0">P</button><button class="action j" data-input="8">J</button><button class="action k" data-input="1">K</button><button class="action s" data-input="9">S</button><button class="combo" data-combo="0,8">P+J</button></div><div id="centerButtons"><button data-input="2">COIN</button><button data-input="3">START</button></div></div>
 <button id="menuBtn" aria-label="設定">☰</button><div id="quickMenu" class="hidden"><button id="backBtn">← 遊戲選單</button><button id="fullBtn">全螢幕</button><label>控制大小 <input id="controlSize" type="range" min="75" max="125" value="100"></label><button id="resetBtn">恢復預設</button></div>
 <script>(function(){
 window.EJS_player='#game';
 window.EJS_core='fbalpha2012_cps1';
 window.EJS_gameUrl=new URL('roms/knightsj.zip',document.baseURI).href;
+window.EJS_gameParentUrl=new URL('roms/knights.zip',document.baseURI).href;
 window.EJS_gameName='knightsj';
 window.EJS_pathtodata='https://cdn.emulatorjs.org/4.2.3/data/';
 window.EJS_startOnLoaded=true;window.EJS_fullscreenOnLoaded=false;window.EJS_language='zh-TW';window.EJS_disableAutoLang=true;window.EJS_disableLocalStorage=true;window.EJS_forceLegacyCores=true;
 window.EJS_VirtualGamepadSettings={};window.EJS_Buttons={playPause:false,restart:false,mute:false,settings:false,fullscreen:false,saveState:false,loadState:false,screenRecord:false,gamepad:false,cheat:false,volume:false,saveSavFiles:false,loadSavFiles:false,quickSave:false,quickLoad:false,screenshot:false,cacheManager:false,exitEmulation:false};
-window.EJS_ready=function(){document.getElementById('loadingNote').textContent='核心已就緒，正在啟動 knightsj.zip…'};window.EJS_onGameStart=function(){document.getElementById('loading').classList.add('hidden')};
-})();</script><script src="https://cdn.emulatorjs.org/4.2.3/data/loader.js"></script><script src="player.js?v=1.5"></script></body></html>
+window.EJS_ready=function(){document.getElementById('loadingNote').textContent='核心已就緒，正在載入 knightsj.zip + knights.zip…'};window.EJS_onGameStart=function(){document.getElementById('loading').classList.add('hidden')};
+})();</script><script src="https://cdn.emulatorjs.org/4.2.3/data/loader.js"></script><script src="player.js?v=1.6"></script></body></html>
