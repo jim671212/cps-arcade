@@ -1,23 +1,22 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-<meta name="theme-color" content="#08090b" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<link rel="manifest" href="manifest.webmanifest" />
-<link rel="apple-touch-icon" href="icons/icon-192.svg" />
-<title>CPS Arcade v1.1</title>
-<link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#08090b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.svg">
+<title>CPS Arcade v1.2</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="version">v1.1</div>
+<div id="version">v1.2</div>
 <div id="installBanner" class="install-banner hidden"><span>安裝到桌面，玩起來更像原生遊戲</span><button id="installBtn">安裝</button><button id="installClose" class="ghost">×</button></div>
-
 <main id="app">
   <section id="library" class="library">
-    <div class="brand"><b>CPS ARCADE</b><span>手機橫向優先 · CPS1/CPS2 綜合模擬器</span></div>
+    <div class="brand"><b>CPS ARCADE</b><span>手機橫向優先 · 點遊戲直接進入</span></div>
     <div class="games">
       <button class="game-card" data-game="tk2j"><span class="num">01</span><strong>三國志2</strong><small>Warriors of Fate</small></button>
       <button class="game-card" data-game="sf2j"><span class="num">02</span><strong>快打旋風</strong><small>Street Fighter II</small></button>
@@ -25,43 +24,9 @@
     </div>
     <div class="library-actions"><button id="multiOpen">多人連線</button><button id="fullscreenHome" class="ghost">全螢幕</button></div>
   </section>
-
-  <section id="play" class="play hidden">
-    <div id="gameWrap" class="game-wrap width-100"><div id="game"></div></div>
-    <div id="touchLayer" class="touch-layer">
-      <div id="joyZone" class="joy-zone"><div id="joyBase" class="joy-base hidden"><div id="joyKnob"></div></div></div>
-      <div id="actionZone" class="action-zone">
-        <button class="arc-btn btn-y" data-key="a" aria-label="Y">Y</button>
-        <button class="arc-btn btn-x" data-key="s" aria-label="X">X</button>
-        <button class="arc-btn btn-b" data-key="x" aria-label="B">B</button>
-        <button class="arc-btn btn-a" data-key="z" aria-label="A">A</button>
-        <button class="combo-btn" data-combo="z,x">A+B</button>
-      </div>
-      <div class="center-btns"><button data-key="Enter">START</button><button data-key="Shift">COIN</button></div>
-    </div>
-    <button id="menuFab" class="menu-fab">☰</button>
-    <aside id="settings" class="settings hidden">
-      <header><b>快速設定</b><button id="settingsClose">×</button></header>
-      <label><span>聲音</span><input id="sound" type="checkbox" checked></label>
-      <label><span>全螢幕延伸</span><input id="edgeFill" type="checkbox" checked></label>
-      <label><span>畫面寬度</span><select id="screenWidth"></select></label>
-      <label><span>多人語音</span><input id="voice" type="checkbox" checked></label>
-      <label><span>左側大小</span><input id="leftSize" type="range" min="75" max="135" value="100"></label>
-      <label><span>左側水平</span><input id="leftX" type="range" min="-25" max="25" value="0"></label>
-      <label><span>左側垂直</span><input id="leftY" type="range" min="-25" max="25" value="0"></label>
-      <label><span>右側大小</span><input id="rightSize" type="range" min="75" max="135" value="100"></label>
-      <label><span>右側水平</span><input id="rightX" type="range" min="-25" max="25" value="0"></label>
-      <label><span>右側垂直</span><input id="rightY" type="range" min="-25" max="25" value="0"></label>
-      <label><span>A 連發</span><input id="turboA" type="checkbox"></label>
-      <label><span>B 連發</span><input id="turboB" type="checkbox"></label>
-      <div class="settings-actions"><button id="resetControls">恢復預設位置</button><button id="backLibrary" class="ghost">遊戲選單</button></div>
-    </aside>
-  </section>
 </main>
-
-<div id="multiModal" class="modal hidden"><div class="modal-card"><button id="multiClose" class="modal-x">×</button><h2>多人連線</h2><p>4 碼邀請，主機開房、朋友輸入即可。</p><div class="room-code" id="roomCode">----</div><div class="multi-actions"><button id="hostRoom">建立房間</button><div class="join-row"><input id="joinCode" maxlength="4" inputmode="numeric" placeholder="4碼"><button id="joinRoom">加入</button></div></div><div id="netStatus" class="status">尚未連線</div></div></div>
-
+<div id="multiModal" class="modal hidden"><div class="modal-card"><button id="multiClose" class="modal-x">×</button><h2>多人連線</h2><p>4 碼邀請功能保留，遊戲同步將在後續版本強化。</p><div class="room-code" id="roomCode">----</div><div class="multi-actions"><button id="hostRoom">建立房間</button><div class="join-row"><input id="joinCode" maxlength="4" inputmode="numeric" placeholder="4碼"><button id="joinRoom">加入</button></div></div><div id="netStatus" class="status">尚未連線</div></div></div>
 <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
-<script src="app.js"></script>
+<script src="home-v12.js"></script>
 </body>
 </html>
